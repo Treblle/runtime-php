@@ -9,6 +9,7 @@
     "resful-api","sdk-php","api-monitoring","developer-tool",
     "treblle","api-observability","observability","treblle-sdk"
   ],
+  "homepage": "https://docs.treblle.com/",
   "readme": "./README.md",
   "authors": [
     {
@@ -24,25 +25,30 @@
     "source": "https://github.com/treblle/runtime-php"
   },
   "require": {
-    "php": "^8.3"
+    "php": "^8.3",
+    "juststeveking/php-sdk": "^3.0",
+    "treblle/cloudevent-php": "dev-main"
   },
   "require-dev": {
     "roave/security-advisories": "dev-latest",
     "phpstan/phpstan": "^1.10",
     "phpstan/phpstan-strict-rules": "^1.5",
     "laravel/pint": "^1.15",
-    "phpunit/phpunit": "^11.1"
+    "phpunit/phpunit": "^11.1",
+    "symfony/var-dumper": "^7.0",
+    "php-http/mock-client": "^1.6",
+    "symfony/http-client": "^7.0"
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
   "autoload": {
     "psr-4": {
-      "JustSteveKing\\Ollama\\": "src/"
+      "Treblle\\Runtime\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "JustSteveKing\\Ollama\\Tests\\": "tests/"
+      "Treblle\\Runtime\\Tests\\": "tests/"
     }
   },
   "config": {
