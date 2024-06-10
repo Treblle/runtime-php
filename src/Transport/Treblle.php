@@ -27,7 +27,7 @@ final class Treblle extends Client
         $this->setup()->send(
             request: Psr17FactoryDiscovery::findRequestFactory()->createRequest(
                 method: Method::POST->value,
-                uri: $this->url . '/dumps/2d4445d8-4238-4a3e-9559-89248248f57b',
+                uri: $this->url . '/dumps/13dba067-aaa2-4781-9452-7c58780b9aa3',
             )->withBody(
                 body: CloudEvent::make(
                     data: [

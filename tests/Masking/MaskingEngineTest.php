@@ -11,13 +11,6 @@ use Treblle\Runtime\Tests\PackageTestCase;
 
 final class MaskingEngineTest extends PackageTestCase
 {
-    protected function engine(): MaskingEngineContract
-    {
-        return new MaskingEngine(
-            config: $this->config(),
-        );
-    }
-
     #[Test]
     public function it_can_mask_a_string(): void
     {
@@ -25,11 +18,11 @@ final class MaskingEngineTest extends PackageTestCase
 
         $this->assertEquals(
             expected: [
-                'password' => '********'
+                'password' => '********',
             ],
             actual: $engine->mask(
                 payload: [
-                    'password' => '12345678'
+                    'password' => '12345678',
                 ],
             ),
         );
@@ -43,14 +36,14 @@ final class MaskingEngineTest extends PackageTestCase
         $this->assertEquals(
             expected: [
                 'user' => [
-                    'password' => '********'
-                ]
+                    'password' => '********',
+                ],
             ],
             actual: $engine->mask(
                 payload: [
                     'user' => [
-                        'password' => '12345678'
-                    ]
+                        'password' => '12345678',
+                    ],
                 ],
             ),
         );
@@ -69,7 +62,7 @@ final class MaskingEngineTest extends PackageTestCase
                 payload: [
                     'dob' => '09/09/1988',
                 ],
-            )
+            ),
         );
     }
 
@@ -86,7 +79,7 @@ final class MaskingEngineTest extends PackageTestCase
                 payload: [
                     'cc' => '1234-1234-1234-1234',
                 ],
-            )
+            ),
         );
     }
 
@@ -107,7 +100,7 @@ final class MaskingEngineTest extends PackageTestCase
                         'email' => 'user@domain.com',
                     ],
                 ],
-            )
+            ),
         );
     }
 
@@ -142,6 +135,40 @@ final class MaskingEngineTest extends PackageTestCase
                     'ss' => '123-45-6789',
                 ],
             ),
+        );
+    }
+
+    #[Test]
+    public function it_can_mask_a_wildcard_value(): void
+    {
+        $engine = $this->engine();
+
+        $this->assertEquals(
+            expected: [
+                'account' => [
+                    'name' => '*******',
+                    'user' => [
+                        'email' => '*****@treblle.com',
+                    ]
+                ],
+            ],
+            actual: $engine->mask(
+                payload: [
+                    'account' => [
+                        'name' => 'Treblle',
+                        'user' => [
+                            'email' => 'steve@treblle.com'
+                        ]
+                    ],
+                ],
+            ),
+        );
+    }
+
+    protected function engine(): MaskingEngineContract
+    {
+        return new MaskingEngine(
+            config: $this->config(),
         );
     }
 }

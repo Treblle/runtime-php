@@ -26,10 +26,12 @@ abstract class PackageTestCase extends TestCase
                 'cc' => CreditCardMatcher::class,
                 'password' => StringMatcher::class,
                 'user.email' => EmailMatcher::class,
+                'account.*' => StringMatcher::class,
+                'account.*.email' => EmailMatcher::class,
                 'ss' => SocialSecurityMatcher::class,
                 'user.password' => StringMatcher::class,
                 'postal_code' => PostalCodeMatcher::class,
-            ]
+            ],
         );
     }
 }

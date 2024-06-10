@@ -17,7 +17,25 @@ final readonly class Headers
         public int|float|string $content_length,
         public string $host,
         public string $user_agent,
-    ) {
+    ) {}
+
+    /**
+     * @param array{
+     *     content_type:string,
+     *     content_length:int|float|string,
+     *     host:string,
+     *     user_agent:string,
+     * } $data
+     * @return Headers
+     */
+    public static function make(array $data): Headers
+    {
+        return new Headers(
+            content_type: $data['content_type'],
+            content_length: $data['content_length'],
+            host: $data['host'],
+            user_agent: $data['user_agent'],
+        );
     }
 
     /**

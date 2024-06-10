@@ -15,6 +15,7 @@ final readonly class Payload
      * @param string $version
      * @param string $sdk
      * @param Data $data
+     * @param int|float $load_time
      */
     public function __construct(
         public string $api_key,
@@ -22,8 +23,8 @@ final readonly class Payload
         public string $version,
         public string $sdk,
         public Data $data,
-    ) {
-    }
+        public int|float $load_time = 0,
+    ) {}
 
     /**
      * @param array{
@@ -31,7 +32,8 @@ final readonly class Payload
      *      project_id: string,
      *      version:string,
      *      sdk:string,
-     *      data:array<string,mixed>
+     *      data:array<string,mixed>,
+     *      load_time:null|int|float
      *  } $data
      * @return Payload
      */
@@ -43,6 +45,7 @@ final readonly class Payload
             version: $data['version'],
             sdk: $data['sdk'],
             data: $data['data'],
+            load_time: $data['load_time'] ?? 0,
         );
     }
 
@@ -52,7 +55,8 @@ final readonly class Payload
      *     project_id: string,
      *     version:string,
      *     sdk:string,
-     *     data:array<string,mixed>
+     *     data:array<string,mixed>,
+     *     load_time:int|float,
      * }
      */
     public function toArray(): array
@@ -63,6 +67,7 @@ final readonly class Payload
             'version' => $this->version,
             'sdk' => $this->sdk,
             'data' => $this->data->toArray(),
+            'load_time' => $this->load_time,
         ];
     }
 

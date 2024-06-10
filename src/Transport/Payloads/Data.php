@@ -19,7 +19,40 @@ final readonly class Data
         public Request $request,
         public Response $response,
         public array $errors,
-    ) {
+    ) {}
+
+    /**
+     * @param array{
+     *     server:array,
+     *     language:array,
+     *     request:array,
+     *     response:array,
+     *     errors:null|array
+     * } $data
+     * @return Data
+     */
+    public static function make(array $data): Data
+    {
+        return new Data(
+            server: Server::make(
+                data: $data['server'],
+            ),
+            language: Language::make(
+                data: $data['language'],
+            ),
+            request: Request::make(
+                data: $data['request'],
+            ),
+            response: Response::make(
+                data: $data['response'],
+            ),
+            errors: $data['errors'] ? array_map(
+                callback: static fn(array $error): Error => Error::make(
+                    data: $error,
+                ),
+                array: $data['errors'],
+            ) : [],
+        );
     }
 
     /**
@@ -39,7 +72,7 @@ final readonly class Data
             'request' => $this->request->toArray(),
             'response' => $this->response->toArray(),
             'errors' => array_map(
-                callback: static fn (Error $error): array => $error->toArray(),
+                callback: static fn(Error $error): array => $error->toArray(),
                 array: $this->errors,
             ),
         ];

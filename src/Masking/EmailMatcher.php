@@ -12,7 +12,7 @@ final class EmailMatcher extends StringMatcher
     {
         return (string) preg_replace_callback(
             pattern: '/([^@]+)/',
-            callback: static fn (array $matches): string => str_repeat(
+            callback: static fn(array $matches): string => str_repeat(
                 string: '*',
                 times: mb_strlen($matches[0]),
             ),

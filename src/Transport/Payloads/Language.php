@@ -17,7 +17,25 @@ final readonly class Language
         public string $version,
         public string $expose_php,
         public string $display_errors,
-    ) {
+    ) {}
+
+    /**
+     * @param array{
+     *     name:string,
+     *     version:string,
+     *     expose_php:string,
+     *     display_errors:string,
+     * } $data
+     * @return Language
+     */
+    public static function make(array $data): Language
+    {
+        return new Language(
+            name: $data['name'],
+            version: $data['version'],
+            expose_php: $data['expose_php'],
+            display_errors: $data['display_errors'],
+        );
     }
 
     /**

@@ -23,7 +23,33 @@ final readonly class Server
         public string|null $signature,
         public string $protocol,
         public string $encoding,
-    ) {
+    ) {}
+
+    /**
+     * @param array{
+     *     ip:string,
+     *     timezone:string,
+     *     os:array,
+     *     software:null|string,
+     *     signature:null|string,
+     *     protocol:string,
+     *     encoding:string,
+     * } $data
+     * @return Server
+     */
+    public static function make(array $data): Server
+    {
+        return new Server(
+            ip: $data['ip'],
+            timezone: $data['timezone'],
+            os: Os::make(
+                data: $data['os'],
+            ),
+            software: $data['software'],
+            signature: $data['signature'],
+            protocol: $data['protocol'],
+            encoding: $data['encoding'],
+        );
     }
 
     /**

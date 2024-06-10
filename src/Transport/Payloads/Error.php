@@ -19,7 +19,27 @@ final readonly class Error
         public string $message,
         public string $file,
         public int $line,
-    ) {
+    ) {}
+
+    /**
+     * @param array{
+     *     source:string,
+     *     type:string,
+     *     message:string,
+     *     file:string,
+     *     line:int,
+     * } $data
+     * @return Error
+     */
+    public static function make(array $data): Error
+    {
+        return new Error(
+            source: $data['source'],
+            type: $data['type'],
+            message: $data['message'],
+            file: $data['file'],
+            line: $data['line'],
+        );
     }
 
     /**

@@ -22,8 +22,34 @@ final readonly class Request
         public string $user_agent,
         public string $method,
         public Headers $headers,
-        public array|object $body,
-    ) {
+        public array|object|null $body,
+    ) {}
+
+    /**
+     * @param array{
+     *     timestamp:string,
+     *     ip:string,
+     *     url:string,
+     *     user_agent:string,
+     *     method:string,
+     *     headers:array,
+     *     body:array|object|null,
+     * } $data
+     * @return Request
+     */
+    public static function make(array $data): Request
+    {
+        return new Request(
+            timestamp: $data['timestamp'],
+            ip: $data['ip'],
+            url: $data['url'],
+            user_agent: $data['user_agent'],
+            method: $data['method'],
+            headers: Headers::make(
+                data: $data['headers'],
+            ),
+            body: $data['body'] ?? null,
+        );
     }
 
     /**
@@ -33,7 +59,7 @@ final readonly class Request
      *     user-agent:string,
      *     method:string,
      *     headers:array<string,mixed>,
-     *     body:array<string,mixed>|object
+     *     body:array<string,mixed>|object|null
      * }
      */
     public function toArray(): array
