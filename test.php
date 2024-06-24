@@ -17,7 +17,6 @@ $config = new Config(
     ignored_environments: ['local'],
     masking: [
         'password' => Masking\StringMatcher::class,
-        // @todo Add wildcard matching
         'account.*' => Masking\StringMatcher::class,
         'user.email' => Masking\EmailMatcher::class,
         'user.dob' => Masking\DateMatcher::class,
