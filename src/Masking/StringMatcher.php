@@ -6,7 +6,6 @@ namespace Treblle\Runtime\Masking;
 
 use Treblle\Runtime\Contracts\MasksInput;
 
-/** @internal */
 class StringMatcher implements MasksInput
 {
     private string $pattern;

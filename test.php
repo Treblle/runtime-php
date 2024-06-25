@@ -16,6 +16,7 @@ $config = new Config(
     project_id: '1234',
     ignored_environments: ['local'],
     masking: [
+        'email' => Masking\EmailMatcher::class,
         'password' => Masking\StringMatcher::class,
         'account.*' => Masking\StringMatcher::class,
         'user.email' => Masking\EmailMatcher::class,
@@ -87,6 +88,6 @@ $runtime->response(
     ],
 );
 
-$runtime->start = microtime(true);
+//$runtime->start = microtime(true);
 
 $runtime->process();

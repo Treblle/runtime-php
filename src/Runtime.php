@@ -8,9 +8,7 @@ use function array_merge;
 
 use Fiber;
 use Http\Message\Authentication\Header;
-
 use Throwable;
-
 use Treblle\Runtime\Contracts\MaskingEngineContract;
 use Treblle\Runtime\DataObjects\Config;
 use Treblle\Runtime\Support\PHP;
@@ -26,23 +24,21 @@ final class Runtime
     public const string VERSION = '0.0.1';
 
     /**
-     * @param Treblle $transport The HTTP Transport that is being used.
-     * @param PendingPayload $payload // the Pending Payload for ingress
-     * @param MaskingEngineContract $maskingEngine // the configured masking engine
-     * @param int|float $start // when did this request start
+     * @param  Treblle  $transport  The HTTP Transport that is being used.
+     * @param  PendingPayload  $payload  // the Pending Payload for ingress
+     * @param  MaskingEngineContract  $maskingEngine  // the configured masking engine
+     * @param  int|float  $start  // when did this request start
      */
     public function __construct(
         private readonly Treblle $transport,
         private readonly PendingPayload $payload,
         private readonly MaskingEngineContract $maskingEngine,
         public int|float $start = 0,
-    ) {}
+    ) {
+    }
 
     /**
      * Create a new pending payload
-     *
-     * @param Config $config
-     * @return PendingPayload
      */
     public static function payload(Config $config): PendingPayload
     {
@@ -123,14 +119,12 @@ final class Runtime
 
     /**
      * Process the payload and send through the transport.
-     *
-     * @return void
      */
     public function process(): void
     {
         try {
             $fiber = new Fiber(
-                callback: fn() => $this->send(),
+                callback: fn () => $this->send(),
             );
 
             $fiber->start();
@@ -141,7 +135,6 @@ final class Runtime
     /**
      * Send the ingress payload through to the transport once built.
      *
-     * @return void
      * @throws Throwable
      */
     public function send(): void
