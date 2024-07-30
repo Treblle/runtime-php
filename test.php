@@ -26,15 +26,16 @@ $config = new Config(
         'user.payments.cc' => Masking\CreditCardMatcher::class,
         'cc' => Masking\CreditCardMatcher::class,
     ],
+    headers: [
+        'Authorization',
+        'X-API-KEY',
+    ],
 );
 
 $runtime = new Runtime(
     transport: new Treblle(
         apiToken: '1234',
         url: 'https://httpdump.app',
-    ),
-    payload: Runtime::payload(
-        config: $config,
     ),
     maskingEngine: new Masking\MaskingEngine(
         config: $config,

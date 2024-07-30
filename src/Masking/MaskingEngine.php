@@ -15,9 +15,32 @@ final readonly class MaskingEngine implements MaskingEngineContract
         private Config $config,
     ) {}
 
-    public function mask(array $payload): array
+    public function mask(array $payload, string $type = 'body'): array
     {
-        return $this->maskArray($payload, []);
+        if ('body' === $type) {
+            return $this->maskArray($payload, []);
+        }
+
+        if('headers' === $type) {
+            return $this->maskHeaders($payload);
+        }
+
+        return $payload;
+    }
+
+    private function maskHeaders(array $payload): array
+    {
+        $data = [];
+
+        foreach ($payload as $key => $value) {
+            if (in_array($key, $this->config->headers)) {
+                $data[$key] = (new StringMatcher())->input((string) $value)->mask();
+            } else {
+                $data[$key] = $value;
+            }
+        }
+
+        return $data;
     }
 
     private function maskArray(array $data, array $path): array
@@ -49,18 +72,23 @@ final readonly class MaskingEngine implements MaskingEngineContract
                 return true;
             }
         }
+
         return false;
     }
 
     private function getMaskerClass(string $dotNotationKey): string
     {
+        /**
+         * @var string $pattern
+         * @var string $maskerClass
+         */
         foreach ($this->config->masking as $pattern => $maskerClass) {
             $regex = $this->convertPatternToRegex($pattern);
             if (preg_match($regex, $dotNotationKey)) {
                 return $maskerClass;
             }
         }
-        throw new \RuntimeException("No masker class found for key: $dotNotationKey");
+        throw new RuntimeException("No masker class found for key: {$dotNotationKey}");
     }
 
     private function convertPatternToRegex(string $pattern): string
