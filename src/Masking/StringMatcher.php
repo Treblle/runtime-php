@@ -8,7 +8,7 @@ use Treblle\Runtime\Contracts\MasksInput;
 
 class StringMatcher implements MasksInput
 {
-    private string $pattern;
+    protected string $pattern;
 
     protected string $input;
 

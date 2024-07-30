@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c99bc21a1fc4450bdbde269c56b6fbce",
+    "content-hash": "aa3cd8f317d10bfee25600d6f23eba05",
     "packages": [
         {
             "name": "clue/stream-filter",
@@ -1845,61 +1845,6 @@
                 "source": "https://github.com/thecodingmachine/safe/tree/v2.5.0"
             },
             "time": "2023-04-05T11:54:14+00:00"
-        },
-        {
-            "name": "treblle/cloudevent-php",
-            "version": "dev-main",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Treblle/cloudevent-php.git",
-                "reference": "83fe1b2d0c936ff7276b108bb0220a3134b39413"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Treblle/cloudevent-php/zipball/83fe1b2d0c936ff7276b108bb0220a3134b39413",
-                "reference": "83fe1b2d0c936ff7276b108bb0220a3134b39413",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^8.2",
-                "php-http/discovery": "^1.19",
-                "psr/http-factory": "^1.1",
-                "psr/http-message": "^2.0"
-            },
-            "require-dev": {
-                "laravel/pint": "^1.15",
-                "phpstan/phpstan": "^1.10",
-                "phpstan/phpstan-strict-rules": "^1.5",
-                "phpunit/phpunit": "^11.1",
-                "roave/security-advisories": "dev-latest"
-            },
-            "default-branch": true,
-            "type": "package",
-            "autoload": {
-                "psr-4": {
-                    "Treblle\\CloudEvent\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Steve McDougall",
-                    "email": "juststevemcd@gmail.com",
-                    "homepage": "https://www.juststeveking.uk/",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Create Cloud Events in PHP.",
-            "homepage": "https://docs.treblle.com/",
-            "support": {
-                "email": "support@treblle.com",
-                "issues": "https://github.com/treblle/runtime-php/issues",
-                "source": "https://github.com/treblle/runtime-php"
-            },
-            "time": "2024-05-15T12:09:35+00:00"
         }
     ],
     "packages-dev": [
@@ -4732,7 +4677,6 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "treblle/cloudevent-php": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": true,

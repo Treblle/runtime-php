@@ -14,6 +14,7 @@ final class ConfigFactory
      *     project_id:string,
      *     ignored_environments:array<int,string>,
      *     masking:array<string,mixed>,
+     *     headers:array<int,string>,
      * } $config
      * @return Config
      */
@@ -24,6 +25,7 @@ final class ConfigFactory
             project_id: $config['project_id'],
             ignored_environments: $config['ignored_environments'],
             masking: $config['masking'],
+            headers: $config['headers'],
         );
     }
 }
