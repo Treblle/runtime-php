@@ -6,5 +6,5 @@ namespace Treblle\Runtime\Contracts;
 
 interface MaskingEngineContract
 {
-    public function mask(array $payload): array;
+    public function mask(array $payload, string $type = 'body'): array;
 }

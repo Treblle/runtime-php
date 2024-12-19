@@ -27,7 +27,6 @@
   "require": {
     "php": "^8.3",
     "juststeveking/php-sdk": "^3.0",
-    "treblle/cloudevent-php": "dev-main",
     "thecodingmachine/safe": "^2.5"
   },
   "require-dev": {

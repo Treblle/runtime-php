@@ -7,7 +7,6 @@ namespace Treblle\Runtime\Tests\Support;
 use PHPUnit\Framework\Attributes\Test;
 use Treblle\Runtime\Support\PHP;
 use Treblle\Runtime\Tests\PackageTestCase;
-use Treblle\Runtime\Transport\Payloads\Language;
 
 final class SupportTest extends PackageTestCase
 {
@@ -44,20 +43,6 @@ final class SupportTest extends PackageTestCase
         $this->assertEquals(
             expected: 'On',
             actual: PHP::displayErrors(),
-        );
-    }
-
-    #[Test]
-    public function it_can_get_the_language_object(): void
-    {
-        $this->assertEquals(
-            expected: new Language(
-                name: 'php',
-                version: '8.3.7',
-                expose_php: 'On',
-                display_errors: 'On',
-            ),
-            actual: PHP::language(),
         );
     }
 }

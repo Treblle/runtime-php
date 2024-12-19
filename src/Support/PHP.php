@@ -8,8 +8,6 @@ use function is_bool;
 
 use Throwable;
 
-use Treblle\Runtime\Transport\Payloads\Language;
-
 final class PHP
 {
     public static function name(): string
@@ -33,16 +31,6 @@ final class PHP
     {
         return self::ini(
             arg: 'display_errors',
-        );
-    }
-
-    public static function language(): Language
-    {
-        return new Language(
-            name: self::name(),
-            version: self::version(),
-            expose_php: self::exposePHP(),
-            display_errors: self::displayErrors(),
         );
     }
 

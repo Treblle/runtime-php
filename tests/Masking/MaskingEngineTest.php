@@ -149,7 +149,7 @@ final class MaskingEngineTest extends PackageTestCase
                     'name' => '*******',
                     'user' => [
                         'email' => '*****@treblle.com',
-                    ]
+                    ],
                 ],
             ],
             actual: $engine->mask(
@@ -157,8 +157,8 @@ final class MaskingEngineTest extends PackageTestCase
                     'account' => [
                         'name' => 'Treblle',
                         'user' => [
-                            'email' => 'steve@treblle.com'
-                        ]
+                            'email' => 'steve@treblle.com',
+                        ],
                     ],
                 ],
             ),
